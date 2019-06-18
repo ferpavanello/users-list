@@ -4,7 +4,6 @@ import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 class Detalhes extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
 
     this.state = {
       item: {}
@@ -17,6 +16,7 @@ class Detalhes extends React.Component {
 
   getItem() {
     const { idUser } = this.props;
+    console.log(idUser);
     fetch(`https://jsonplaceholder.typicode.com/users/${idUser}`)
       .then(result => result.json())
       .then(result => this.setState({ item: result }));

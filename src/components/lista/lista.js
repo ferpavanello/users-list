@@ -14,8 +14,7 @@ class Lista extends React.Component {
 
     this.state = {
       items: [],
-      userSelected: 1,
-      isSelected: false
+      userSelected: 1
     };
   }
 
@@ -43,11 +42,10 @@ class Lista extends React.Component {
                   <ListItem
                     key={index}
                     button
-                    selected={this.isSelected}
+                    selected={this.state.userSelected === index + 1}
                     onClick={() =>
                       this.setState({
-                        userSelected: index + 1,
-                        isSelected: true
+                        userSelected: index + 1
                       })
                     }
                   >
