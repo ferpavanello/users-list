@@ -6,13 +6,16 @@ import {
   ListItemText,
   Typography
 } from "@material-ui/core";
+import Detalhes from "../detalhes/detalhes";
 
 class Lista extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      items: []
+      items: [],
+      userSelected: 1,
+      isSelected: false
     };
   }
 
@@ -28,19 +31,34 @@ class Lista extends React.Component {
 
   render() {
     return (
-      <Grid item xs={5}>
-        <Typography variant="h6" className={styles.titulo}>
-          Usuários
-        </Typography>
-        <List>
-          {this.state.items.map(function(item, index) {
-            return (
-              <ListItem>
-                <ListItemText primary={item.name} />
-              </ListItem>
-            );
-          })}
-        </List>
+      <Grid item xs={9}>
+        <Grid container>
+          <Grid item xs={8}>
+            <Typography variant="h6" className={styles.titulo}>
+              Usuários
+            </Typography>
+            <List>
+              {this.state.items.map((item, index) => {
+                return (
+                  <ListItem
+                    key={index}
+                    button
+                    selected={this.isSelected}
+                    onClick={() =>
+                      this.setState({
+                        userSelected: index + 1,
+                        isSelected: true
+                      })
+                    }
+                  >
+                    <ListItemText primary={item.name} />
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Grid>
+          <Detalhes idUser={this.state.userSelected} />
+        </Grid>
       </Grid>
     );
   }

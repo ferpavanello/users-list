@@ -4,11 +4,7 @@ import Main from "./main";
 import "./index.css";
 
 function App() {
-  return (
-    <div>
-      <Main />
-    </div>
-  );
+  return <Main />;
 }
 
 export default App;
