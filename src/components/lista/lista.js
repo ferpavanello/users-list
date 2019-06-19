@@ -14,21 +14,20 @@ class Lista extends React.Component {
 
     this.state = {
       items: [],
-      selected: 1
+      regSelected: 1,
+      apiSelected: ""
     };
   }
 
   componentWillReceiveProps(props) {
     this.getItems(props.api);
+    this.setState({ apiSelected: props.api });
   }
 
   getItems(api) {
-    console.log(api);
     fetch(`https://jsonplaceholder.typicode.com/${api}`)
       .then(results => results.json())
       .then(results => this.setState({ items: results }));
-
-    console.log(this.state.items);
   }
 
   render() {
@@ -37,18 +36,16 @@ class Lista extends React.Component {
         <Grid container>
           <Grid item xs={8}>
             <List>
-              <Typography variant="h6" className={styles.titulo}>
-                Usuários
-              </Typography>
+              <Typography variant="h6">Lista de Usuários</Typography>
               {this.state.items.map((item, index) => {
                 return (
                   <ListItem
                     key={index}
                     button
-                    selected={this.state.selected === index + 1}
+                    selected={this.state.regSelected === index + 1}
                     onClick={() =>
                       this.setState({
-                        selected: index + 1
+                        regSelected: index + 1
                       })
                     }
                   >
@@ -59,19 +56,15 @@ class Lista extends React.Component {
             </List>
           </Grid>
           <Grid item xs={4}>
-            <Detalhes id={this.state.selected} />
+            <Detalhes
+              id={this.state.regSelected}
+              api={this.state.apiSelected}
+            />
           </Grid>
         </Grid>
       </Grid>
     );
   }
 }
-
-const styles = () => ({
-  titulo: {
-    display: "inline-block",
-    marginBottom: 10
-  }
-});
 
 export default Lista;

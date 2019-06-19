@@ -11,11 +11,11 @@ class Detalhes extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    this.getItem(props.id);
+    this.getItem(props.api, props.id);
   }
 
-  getItem(id) {
-    fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
+  getItem(api, id) {
+    fetch(`https://jsonplaceholder.typicode.com/${api}/${id}`)
       .then(result => result.json())
       .then(result => this.setState({ item: result }));
   }

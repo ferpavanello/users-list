@@ -6,10 +6,16 @@ class Menu extends React.Component {
     return (
       <Grid item xs={3}>
         <MenuList>
-          <MenuItem onClick={() => this.props.onChangeList("users")}>
+          <MenuItem
+            selected={this.props.listSelected === "users"}
+            onClick={() => this.props.onChangeList("users")}
+          >
             Usuários
           </MenuItem>
-          <MenuItem onClick={() => this.props.onChangeList("posts")}>
+          <MenuItem
+            selected={this.props.listSelected === "posts"}
+            onClick={() => this.props.onChangeList("posts")}
+          >
             Publicações
           </MenuItem>
         </MenuList>

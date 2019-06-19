@@ -9,7 +9,7 @@ class Main extends React.Component {
     super();
 
     this.state = {
-      listSelected: "users"
+      listSelected: ""
     };
   }
 
@@ -22,7 +22,7 @@ class Main extends React.Component {
           </Grid>
           <Grid container>
             <Menu
-              listSelected={this.listSelected}
+              listSelected={this.state.listSelected}
               onChangeList={newList => this.setState({ listSelected: newList })}
             />
             <Lista api={this.state.listSelected} />
