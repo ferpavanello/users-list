@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 
-class Detalhes extends React.Component {
+class DetalhesPublicacoes extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,10 +25,10 @@ class Detalhes extends React.Component {
       <Card elevation={0}>
         <CardContent>
           <Typography variant="h5" component="h2">
-            {this.state.item.name}
+            {this.state.item.title}
           </Typography>
           <Typography variant="body2" component="p">
-            {this.state.item.email}
+            {this.state.item.body}
           </Typography>
         </CardContent>
       </Card>
@@ -36,4 +36,4 @@ class Detalhes extends React.Component {
   }
 }
 
-export default Detalhes;
+export default DetalhesPublicacoes;

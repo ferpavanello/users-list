@@ -15,19 +15,12 @@ class Main extends React.Component {
 
   render() {
     return (
-      <Grid container className={styles.container}>
-        <Grid item xs={12}>
-          <Grid container>
-            <Busca />
-          </Grid>
-          <Grid container>
-            <Menu
-              listSelected={this.state.listSelected}
-              onChangeList={newList => this.setState({ listSelected: newList })}
-            />
-            <Lista api={this.state.listSelected} />
-          </Grid>
-        </Grid>
+      <Grid container>
+        <Menu
+          listSelected={this.state.listSelected}
+          onChangeList={newList => this.setState({ listSelected: newList })}
+        />
+        <Lista api={this.state.listSelected} />
       </Grid>
     );
   }

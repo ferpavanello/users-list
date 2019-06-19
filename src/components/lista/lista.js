@@ -1,12 +1,7 @@
 import React from "react";
-import {
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  Typography
-} from "@material-ui/core";
-import Detalhes from "../detalhes/detalhes";
+import { Grid } from "@material-ui/core";
+import ListaUsuarios from "../lista/listaUsuarios";
+import ListaPublicacoes from "../lista/listaPublicacoes";
 
 class Lista extends React.Component {
   constructor(props) {
@@ -14,14 +9,13 @@ class Lista extends React.Component {
 
     this.state = {
       items: [],
-      regSelected: 1,
       apiSelected: ""
     };
   }
 
   componentWillReceiveProps(props) {
-    this.getItems(props.api);
     this.setState({ apiSelected: props.api });
+    this.getItems(props.api);
   }
 
   getItems(api) {
@@ -31,39 +25,27 @@ class Lista extends React.Component {
   }
 
   render() {
-    return (
-      <Grid item xs={9}>
-        <Grid container>
-          <Grid item xs={8}>
-            <List>
-              <Typography variant="h6">Lista de Usuários</Typography>
-              {this.state.items.map((item, index) => {
-                return (
-                  <ListItem
-                    key={index}
-                    button
-                    selected={this.state.regSelected === index + 1}
-                    onClick={() =>
-                      this.setState({
-                        regSelected: index + 1
-                      })
-                    }
-                  >
-                    <ListItemText primary={item.name} />
-                  </ListItem>
-                );
-              })}
-            </List>
-          </Grid>
-          <Grid item xs={4}>
-            <Detalhes
-              id={this.state.regSelected}
-              api={this.state.apiSelected}
-            />
-          </Grid>
+    if (this.state.apiSelected === "users") {
+      return (
+        <Grid item xs={9}>
+          <ListaUsuarios
+            items={this.state.items}
+            api={this.state.apiSelected}
+          />
         </Grid>
-      </Grid>
-    );
+      );
+    } else if (this.state.apiSelected === "posts") {
+      return (
+        <Grid item xs={9}>
+          <ListaPublicacoes
+            items={this.state.items}
+            api={this.state.apiSelected}
+          />
+        </Grid>
+      );
+    } else {
+      return <Grid item xs={9} />;
+    }
   }
 }
 
