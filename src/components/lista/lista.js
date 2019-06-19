@@ -9,23 +9,26 @@ import {
 import Detalhes from "../detalhes/detalhes";
 
 class Lista extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       items: [],
-      userSelected: 1
+      selected: 1
     };
   }
 
-  componentDidMount() {
-    this.getItems();
+  componentWillReceiveProps(props) {
+    this.getItems(props.api);
   }
 
-  getItems() {
-    fetch("https://jsonplaceholder.typicode.com/users")
+  getItems(api) {
+    console.log(api);
+    fetch(`https://jsonplaceholder.typicode.com/${api}`)
       .then(results => results.json())
       .then(results => this.setState({ items: results }));
+
+    console.log(this.state.items);
   }
 
   render() {
@@ -42,10 +45,10 @@ class Lista extends React.Component {
                   <ListItem
                     key={index}
                     button
-                    selected={this.state.userSelected === index + 1}
+                    selected={this.state.selected === index + 1}
                     onClick={() =>
                       this.setState({
-                        userSelected: index + 1
+                        selected: index + 1
                       })
                     }
                   >
@@ -56,7 +59,7 @@ class Lista extends React.Component {
             </List>
           </Grid>
           <Grid item xs={4}>
-            <Detalhes idUser={this.state.userSelected} />
+            <Detalhes id={this.state.selected} />
           </Grid>
         </Grid>
       </Grid>

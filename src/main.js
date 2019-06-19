@@ -4,19 +4,34 @@ import Menu from "./components/menu/menu";
 import Lista from "./components/lista/lista";
 import Busca from "./components/busca/busca";
 
-const Main = () => (
-  <Grid container className={styles.container}>
-    <Grid item xs={12}>
-      <Grid container>
-        <Busca />
+class Main extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      listSelected: "users"
+    };
+  }
+
+  render() {
+    return (
+      <Grid container className={styles.container}>
+        <Grid item xs={12}>
+          <Grid container>
+            <Busca />
+          </Grid>
+          <Grid container>
+            <Menu
+              listSelected={this.listSelected}
+              onChangeList={newList => this.setState({ listSelected: newList })}
+            />
+            <Lista api={this.state.listSelected} />
+          </Grid>
+        </Grid>
       </Grid>
-      <Grid container>
-        <Menu />
-        <Lista />
-      </Grid>
-    </Grid>
-  </Grid>
-);
+    );
+  }
+}
 
 const styles = () => ({
   container: {
