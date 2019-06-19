@@ -2,7 +2,6 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import Menu from "./components/menu/menu";
 import Lista from "./components/lista/lista";
-import Busca from "./components/busca/busca";
 
 class Main extends React.Component {
   constructor() {
@@ -25,11 +24,5 @@ class Main extends React.Component {
     );
   }
 }
-
-const styles = () => ({
-  container: {
-    display: "flex"
-  }
-});
 
 export default Main;
