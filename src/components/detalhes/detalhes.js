@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardContent, Typography, Grid } from "@material-ui/core";
+import { Card, CardContent, Typography } from "@material-ui/core";
 
 class Detalhes extends React.Component {
   constructor(props) {
@@ -10,13 +10,11 @@ class Detalhes extends React.Component {
     };
   }
 
-  componentWillReceiveProps() {
-    this.getItem();
+  componentWillReceiveProps(props) {
+    this.getItem(props.idUser);
   }
 
-  getItem() {
-    const { idUser } = this.props;
-    console.log(idUser);
+  getItem(idUser) {
     fetch(`https://jsonplaceholder.typicode.com/users/${idUser}`)
       .then(result => result.json())
       .then(result => this.setState({ item: result }));
@@ -24,18 +22,16 @@ class Detalhes extends React.Component {
 
   render() {
     return (
-      <Grid item xs={4}>
-        <Card elevation={0}>
-          <CardContent>
-            <Typography variant="h5" component="h2">
-              {this.state.item.name}
-            </Typography>
-            <Typography variant="body2" component="p">
-              {this.state.item.email}
-            </Typography>
-          </CardContent>
-        </Card>
-      </Grid>
+      <Card elevation={0}>
+        <CardContent>
+          <Typography variant="h5" component="h2">
+            {this.state.item.name}
+          </Typography>
+          <Typography variant="body2" component="p">
+            {this.state.item.email}
+          </Typography>
+        </CardContent>
+      </Card>
     );
   }
 }

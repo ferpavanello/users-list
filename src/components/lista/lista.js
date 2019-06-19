@@ -33,10 +33,10 @@ class Lista extends React.Component {
       <Grid item xs={9}>
         <Grid container>
           <Grid item xs={8}>
-            <Typography variant="h6" className={styles.titulo}>
-              Usuários
-            </Typography>
             <List>
+              <Typography variant="h6" className={styles.titulo}>
+                Usuários
+              </Typography>
               {this.state.items.map((item, index) => {
                 return (
                   <ListItem
@@ -55,7 +55,9 @@ class Lista extends React.Component {
               })}
             </List>
           </Grid>
-          <Detalhes idUser={this.state.userSelected} />
+          <Grid item xs={4}>
+            <Detalhes idUser={this.state.userSelected} />
+          </Grid>
         </Grid>
       </Grid>
     );
@@ -64,7 +66,8 @@ class Lista extends React.Component {
 
 const styles = () => ({
   titulo: {
-    margin: "10px 0"
+    display: "inline-block",
+    marginBottom: 10
   }
 });
 
